@@ -26,10 +26,10 @@ bush3 = bush_img.sprite(140, 0, 65, 65)
 bush4 = bush_img.sprite(205, 0, 65, 65)
 bushs = (bush1, bush2, bush3, bush4)
 #initialize maze
-maze = create_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
-for y in range(len(maze)):
-        for x in range(len(maze[0])):
-            maze[y][x] = random.randint(0, 3)
+maze = make_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
+# for y in range(len(maze)):
+#         for x in range(len(maze[0])):
+#             maze[y][x] = random.randint(0, 3)
 print(maze)
 #-----------------------------------------------#
 
@@ -39,9 +39,9 @@ while isRunning:
     clock.tick(30)    
     #initialize background
     screen.blit(background, (0, 0))
-    for y in range(len(maze)):
-        for x in range(len(maze[0])):
-            screen.blit(bushs[maze[y][x]], (x*65+20, y*65+300))
+    # for y in range(len(maze)):
+    #     for x in range(len(maze[0])):
+    #         screen.blit(bushs[maze[y][x]], (x*65+20, y*65+300))
     pygame.display.flip()
 
     #Verif if player shut the game
