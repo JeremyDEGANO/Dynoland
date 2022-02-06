@@ -14,6 +14,7 @@ class Func:
         sprite.blit(self.img_to_crop, (0, 0), (x, y, w, h))
         return sprite
 
+#Create a maze
 def make_maze(w, h):
     vis = [[0] * w + [1] for _ in range(h)] + [[1] * (w + 1)]
     ver = [["|  "] * w + ['|'] for _ in range(h)] + [[]]
