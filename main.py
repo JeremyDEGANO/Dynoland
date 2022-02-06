@@ -34,15 +34,6 @@ for y in range(len(maze)):
         for x in range(len(maze[0])):
             if maze[y][x] == 'w':
                 maze[y][x] = random.randint(0, 3)
-# maze = make_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
-# maze = maze.replace('  ', '4')
-# maze = maze.replace(' ', '4')
-# maze = maze.replace('+--', str(random.randint(0, 3)))
-# maze = maze.replace('--+', str(random.randint(0, 3)))
-# maze = maze.replace('+', str(random.randint(0, 3)))
-# maze = maze.replace('|', str(random.randint(0, 3)))
-# maze = maze.replace('\n', '')
-
 
 #-----------------------------------------------#
 
