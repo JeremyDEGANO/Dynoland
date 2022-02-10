@@ -11,7 +11,7 @@ class Func:
         self.file = file
         self.img_to_crop = pygame.image.load(file).convert()
 
-    #Function Sprite to crop bush
+    #Function Sprite to crop image
     def sprite(self, x, y, w, h):
         sprite = pygame.Surface((w,h))
         sprite.set_colorkey((0, 0, 0))

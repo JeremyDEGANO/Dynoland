@@ -34,27 +34,27 @@ bushs = (bush1, bush2, bush3, bush4)
 dyno_img = Func('assets/dyno_sprite_back_front.png')
 dyno_front1 = dyno_img.sprite(0, 0, 65, 65)
 dyno_front2 = dyno_img.sprite(65, 0, 65, 65)
-dyno_front3 = dyno_img.sprite(140, 0, 65, 65)
-dyno_front4 = dyno_img.sprite(205, 0, 65, 65)
+dyno_front3 = dyno_img.sprite(130, 0, 65, 65)
+dyno_front4 = dyno_img.sprite(195, 0, 65, 65)
 dynos_front = (dyno_front1, dyno_front2, dyno_front3, dyno_front4)
 #back Dyno
 dyno_back1 = dyno_img.sprite(0, 96, 65, 65)
 dyno_back2 = dyno_img.sprite(65, 96, 65, 65)
-dyno_back3 = dyno_img.sprite(140, 96, 65, 65)
-dyno_back4 = dyno_img.sprite(205, 96, 65, 65)
+dyno_back3 = dyno_img.sprite(130, 96, 65, 65)
+dyno_back4 = dyno_img.sprite(195, 96, 65, 65)
 dynos_back = (dyno_back1, dyno_back2, dyno_back3, dyno_back4)
 #right Dyno
 dyno_img_left_right = Func('assets/dyno_sprite_right_left.png')
 dyno_right1 = dyno_img_left_right.sprite(0, 0, 65, 65)
 dyno_right2 = dyno_img_left_right.sprite(65, 0, 65, 65)
-dyno_right3 = dyno_img_left_right.sprite(140, 0, 65, 65)
-dyno_right4 = dyno_img_left_right.sprite(205, 0, 65, 65)
+dyno_right3 = dyno_img_left_right.sprite(130, 0, 65, 65)
+dyno_right4 = dyno_img_left_right.sprite(195, 0, 65, 65)
 dynos_right = (dyno_right1, dyno_right2, dyno_right3, dyno_right4)
 #left Dyno
 dyno_left1 = dyno_img_left_right.sprite(0, 96, 65, 65)
 dyno_left2 = dyno_img_left_right.sprite(65, 96, 65, 65)
-dyno_left3 = dyno_img_left_right.sprite(140, 96, 65, 65)
-dyno_left4 = dyno_img_left_right.sprite(205, 96, 65, 65)
+dyno_left3 = dyno_img_left_right.sprite(130, 96, 65, 65)
+dyno_left4 = dyno_img_left_right.sprite(195, 96, 65, 65)
 dynos_left = (dyno_left1, dyno_left2, dyno_left3, dyno_left4)
 
 #initialize movement
@@ -68,9 +68,8 @@ for h in range(len(maze)):
             if maze[h][w] == 'w':
                 maze[h][w] = random.randint(0, 3)
 
-x=20
-y=35
 x = [x for x, value in enumerate(maze[len(maze)-1]) if value == 'c'][0]
+endgame = [z for z, value in enumerate(maze[0]) if value == 'c'][0]
 y = len(maze)-1
 #-----------------------------------------------#
 
@@ -81,6 +80,16 @@ while isRunning:
     #initialize background
     screen.blit(background, (0, 0))
     #define score text
+    if x == endgame and y ==0 :
+        maze = create_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
+        for h in range(len(maze)):
+            for w in range(len(maze[0])):
+                if maze[h][w] == 'w':
+                    maze[h][w] = random.randint(0, 3)
+        x = [x for x, value in enumerate(maze[len(maze)-1]) if value == 'c'][0]
+        endgame = [z for z, value in enumerate(maze[0]) if value == 'c'][0]
+        y = len(maze)-1
+        score += 1
     scoretext = myfont.render("Score = "+str(score), 1, (255,255,255))
     screen.blit(scoretext, (5, 10))
     screen.blit(dyno[move[0]][move[1]], (x*65+20,y*65+300))
