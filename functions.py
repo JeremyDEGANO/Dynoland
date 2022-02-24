@@ -1,6 +1,8 @@
+from encodings import utf_8
 import pygame
 import random
 import time
+import json
 from colorama import init
 from colorama import Fore, Back, Style
 from random import shuffle, randrange
@@ -57,3 +59,11 @@ def listen_event(width, height, x, y, move, maze):
                 # x=20
                 # y=35
     return x, y
+def write_score(score):
+    dataplayer ={
+        # "name" : "{}".format(user),
+        "score" : score
+    }
+    json_object = json.dumps(dataplayer, indent = 4)
+    with open('score.json', 'w') as outfile:
+        outfile.write(json_object)

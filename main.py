@@ -1,8 +1,10 @@
 import pygame
 import random
+import time
 import sys
 import PIL
 from PIL import Image
+from time import *
 from functions import *
 from maze import *
 
@@ -17,8 +19,8 @@ screen = pygame.display.set_mode((WIDTH,HEIGHT))
 #----------------Variables----------------------#
 isRunning = True
 clock = pygame.time.Clock()
-
-score = 0
+score_clock = process_time()
+score = 1000
 myfont = pygame.font.SysFont( 'monospace', 20, bold=pygame.font.Font.bold)
 #initialize background
 background = pygame.image.load('assets/background.jpg')
@@ -74,13 +76,19 @@ y = len(maze)-1
 #-----------------------------------------------#
 
 #Boucle infini du jeu
+
 while isRunning:
     #frame of game
-    clock.tick(60)    
+    clock.tick(60)
+    endscore_clock = process_time()
+    if endscore_clock - score_clock >= 0.01:
+        score_clock = process_time()
+        score -=1   
     #initialize background
     screen.blit(background, (0, 0))
     #define score text
     if x == endgame and y ==0 :
+        write_score(score)
         maze = create_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
         for h in range(len(maze)):
             for w in range(len(maze[0])):
@@ -89,7 +97,10 @@ while isRunning:
         x = [x for x, value in enumerate(maze[len(maze)-1]) if value == 'c'][0]
         endgame = [z for z, value in enumerate(maze[0]) if value == 'c'][0]
         y = len(maze)-1
-        score += 1
+        # score += 1
+    if score <= 0:
+        write_score(score)
+        sys.exit()
     scoretext = myfont.render("Score = "+str(score), 1, (255,255,255))
     screen.blit(scoretext, (5, 10))
     screen.blit(dyno[move[0]][move[1]], (x*65+20,y*65+300))
