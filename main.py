@@ -17,8 +17,9 @@ HEIGHT = 1020
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 #----------------Variables----------------------#
+
 isRunning = True
-pseudo = "Jhon Doe"
+pseudo = sys.argv[1] if len(sys.argv)>1 else 'jhon Doe'
 clock = pygame.time.Clock()
 score_clock = process_time()
 score = 1000
@@ -98,12 +99,16 @@ while isRunning:
         x = [x for x, value in enumerate(maze[len(maze)-1]) if value == 'c'][0]
         endgame = [z for z, value in enumerate(maze[0]) if value == 'c'][0]
         y = len(maze)-1
-        # score += 1
+        score = 1000
     if score <= 0:
         write_score(score)
         sys.exit()
+        
     scoretext = myfont.render("Score = "+str(score), 1, (255,255,255))
     screen.blit(scoretext, (5, 10))
+    pseudotext =  myfont.render(pseudo, 1, (50,255,255))
+    screen.blit(pseudotext, (5, 30))
+
     screen.blit(dyno[move[0]][move[1]], (x*65+20,y*65+300))
     for h in range(len(maze)):
         for w in range(len(maze[0])):
