@@ -18,6 +18,7 @@ screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 #----------------Variables----------------------#
 isRunning = True
+pseudo = "Jhon Doe"
 clock = pygame.time.Clock()
 score_clock = process_time()
 score = 1000
@@ -88,7 +89,7 @@ while isRunning:
     screen.blit(background, (0, 0))
     #define score text
     if x == endgame and y ==0 :
-        write_score(score)
+        write_score(score, pseudo)
         maze = create_maze(int(WIDTH/65), int((HEIGHT/65)*0.70))
         for h in range(len(maze)):
             for w in range(len(maze[0])):

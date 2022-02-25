@@ -1,6 +1,7 @@
 from encodings import utf_8
 import pygame
 import random
+import os
 import time
 import json
 from colorama import init
@@ -56,14 +57,28 @@ def listen_event(width, height, x, y, move, maze):
                     for w in range(len(maze[0])):
                         if maze[h][w] == 'w':
                             maze[h][w] = random.randint(0, 3)
-                # x=20
-                # y=35
     return x, y
-def write_score(score):
-    dataplayer ={
-        # "name" : "{}".format(user),
-        "score" : score
-    }
-    json_object = json.dumps(dataplayer, indent = 4)
-    with open('score.json', 'w') as outfile:
-        outfile.write(json_object)
+
+def write_score(score, name):
+    # check if size of file is 0
+    file_path = '.\score.json'
+    if os.stat(file_path).st_size == 0:
+        dataplayer ={"score" : [{name : score}]}
+        json_object = json.dumps(dataplayer, indent = 4)
+        with open('score.json', 'w') as outfile:
+            outfile.write(json_object)
+    else:
+        # get actual score in score.json
+        with open('score.json') as json_file:
+            data = json.load(json_file)
+        dataplayer ={"score" : [{name : score}]}
+        # merge score 
+        for key, value in data.items():
+            if key in data:
+                dataplayer[key].extend(value)
+            else:
+                dataplayer[key] = value
+        # write it in score.json
+        json_object = json.dumps(dataplayer, indent = 4)
+        with open('score.json', 'w') as outfile:
+            outfile.write(json_object)
