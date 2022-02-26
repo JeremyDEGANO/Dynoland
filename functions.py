@@ -63,7 +63,7 @@ def write_score(score, name):
     # check if size of file is 0
     file_path = '.\score.json'
     if os.stat(file_path).st_size == 0:
-        dataplayer ={"score" : [{name : score}]}
+        dataplayer ={"score" : {name : score}}
         json_object = json.dumps(dataplayer, indent = 4)
         with open('score.json', 'w') as outfile:
             outfile.write(json_object)
@@ -71,14 +71,13 @@ def write_score(score, name):
         # get actual score in score.json
         with open('score.json') as json_file:
             data = json.load(json_file)
-        dataplayer ={"score" : [{name : score}]}
-        # merge score 
-        for key, value in data.items():
-            if key in data:
-                dataplayer[key].extend(value)
-            else:
-                dataplayer[key] = value
-        # write it in score.json
-        json_object = json.dumps(dataplayer, indent = 4)
+        # merge score
+        saved_scores = data['score']
+        if name in saved_scores:
+            saved_scores[name] = score if score > saved_scores[name] else saved_scores[name]
+        else:
+            saved_scores[name] = score
+        sorted_scores = dict(sorted(saved_scores.items(), key=lambda t: t[1], reverse=True))
+        json_object = json.dumps({"score": sorted_scores}, indent = 4)
         with open('score.json', 'w') as outfile:
             outfile.write(json_object)

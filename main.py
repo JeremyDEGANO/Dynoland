@@ -108,7 +108,6 @@ while isRunning:
     screen.blit(scoretext, (5, 10))
     pseudotext =  myfont.render(pseudo, 1, (50,255,255))
     screen.blit(pseudotext, (5, 30))
-
     screen.blit(dyno[move[0]][move[1]], (x*65+20,y*65+300))
     for h in range(len(maze)):
         for w in range(len(maze[0])):
