@@ -52,6 +52,4 @@ $.get("../score.json", function(data){
     document.getElementById("premier").innerHTML += "<td>"+nompremier+"</td> <td>"+scorepremier+"</td>";
     document.getElementById("deuxieme").innerHTML += "<td>"+nomdeuxieme+"</td><td> "+scoredeuxieme+"</td>";
     document.getElementById("troisieme").innerHTML += "<td>"+nomtroisieme+"</td><td> "+scoretroisieme+"</td>";
-
-
 });
