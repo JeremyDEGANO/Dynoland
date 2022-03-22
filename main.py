@@ -21,6 +21,9 @@ screen = pygame.display.set_mode((WIDTH,HEIGHT))
 isRunning = True
 pseudo = sys.argv[1] if len(sys.argv)>1 else 'jhon Doe'
 clock = pygame.time.Clock()
+music = "assets/song.wav"
+jurasic = pygame.mixer.Sound(music)
+pygame.mixer.Sound.play(jurasic)
 score_clock = process_time()
 score = 1000
 myfont = pygame.font.SysFont( 'monospace', 20, bold=pygame.font.Font.bold)
