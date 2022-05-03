@@ -12,8 +12,9 @@ from maze import *
 pygame.init()
 pygame.display.init()
 pygame.display.set_caption("DynoLand")
-WIDTH = 1920
-HEIGHT = 1020
+#get the monitor size and set the screen size to it
+WIDTH = pygame.display.Info().current_w
+HEIGHT = pygame.display.Info().current_h
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 #----------------Variables----------------------#
