@@ -1,0 +1,10 @@
+@startuml
+Player -> Dynoland : Start The game
+Dynoland -> Dynoland : Generate maze
+Dynoland -> Player : Display the maze with figure
+Player -> Dynoland : Press key events
+Dynoland -> Dynoland : verify if score is not 0 --> Generate new map
+Dynoland -> Dynoland :Move figure in table
+Dynoland -> Player :  Display figure with event
+Dynoland -> Dynoland : if end of maze, store score in Json file
+@enduml
